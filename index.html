@@ -80,7 +80,14 @@
               <h2 className="text-lg font-semibold mb-3">Inputs</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Field label="Per-Infusion Revenue ($)">
-                  <input type="number" min="400" max="750" value={price} onChange={(e)=>setPrice(+e.target.value || 0)}
+                  <input type="number" min="400" max="750" value={price} onChange={(e) => {
+  const v = e.target.value;
+  if (v === "") {
+    setPrice("");
+  } else {
+    setPrice(Number(v));
+  }
+}}
                     className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black/20"/>
                   <Hint>Range: $400–$750 (default $550)</Hint>
                 </Field>
